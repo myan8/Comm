@@ -1,0 +1,16 @@
+# interval.every(step) <>
+
+Returns a filtered view of this interval representing every stepth date. The meaning of step is dependent on this interval’s parent interval as defined by the field function. For example, d3.timeMinute.every(15) returns an interval representing every fifteen minutes, starting on the hour: :00, :15, :30, :45, etc. Note that for some intervals, the resulting dates may not be uniformly-spaced; d3.timeDay’s parent interval is d3.timeMonth, and thus the interval number resets at the start of each month. If step is not valid, returns null. If step is one, returns this interval.
+
+This method can be used in conjunction with interval.range to ensure that two overlapping ranges are consistent. For example, this range contains odd days:
+
+d3.timeDay.every(2).range(new Date(2015, 0, 1), new Date(2015, 0, 7));
+// [Thu Jan 01 2015 00:00:00 GMT-0800 (PST),
+//  Sat Jan 03 2015 00:00:00 GMT-0800 (PST),
+//  Mon Jan 05 2015 00:00:00 GMT-0800 (PST)]
+As does this one:
+
+d3.timeDay.every(2).range(new Date(2015, 0, 2), new Date(2015, 0, 8));
+// [Sat Jan 03 2015 00:00:00 GMT-0800 (PST),
+//  Mon Jan 05 2015 00:00:00 GMT-0800 (PST),
+//  Wed Jan 07 2015 00:00:00 GMT-0800 (PST)]
